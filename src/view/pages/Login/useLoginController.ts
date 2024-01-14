@@ -25,10 +25,9 @@ export function useLoginController() {
     console.log('Chama a api com:', data)
   })
 
-
   return {
     handleSubmit,
     register,
-    errors
+    errors,
   }
 }
