@@ -25,7 +25,6 @@ export function Login() {
           {...register('email')}
           type="email"
           placeholder="E-mail"
-          name="email"
           error={errors.email?.message}
           autoComplete="on"
         />
@@ -34,7 +33,6 @@ export function Login() {
           {...register('password')}
           type="password"
           placeholder="senha"
-          name="password"
           error={errors.password?.message}
           autoComplete="current-password"
         />
