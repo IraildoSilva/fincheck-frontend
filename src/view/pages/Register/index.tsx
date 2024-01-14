@@ -18,23 +18,18 @@ export function Register() {
       </header>
 
       <form className="mt-[60px] flex flex-col gap-4">
-        <Input
-          type="text"
-          placeholder="Nome"
-          name="name"
-          autoComplete="full-name"
-        />
+        <Input type="text" placeholder="Nome" name="name" autoComplete="on" />
         <Input
           type="email"
           placeholder="E-mail"
           name="email"
-          autoComplete="email"
+          autoComplete="on"
         />
         <Input
           type="password"
           placeholder="senha"
           name="password"
-          autoComplete="current-password"
+          autoComplete="new-password"
         />
 
         <Button type="submit" className="mt-2">

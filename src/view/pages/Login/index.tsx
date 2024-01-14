@@ -22,7 +22,7 @@ export function Login() {
           type="email"
           placeholder="E-mail"
           name="email"
-          autoComplete="username"
+          autoComplete="on"
         />
         <Input
           type="password"
