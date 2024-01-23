@@ -25,7 +25,7 @@ export function Accounts() {
         </div>
       </div>
 
-      <div className="flex-1 flex flex-col justify-end mt-10 md:mt-0">
+      <div className="flex-1 flex flex-col justify-end mt-10 lg:mt-0">
         <div>
           <Swiper
             spaceBetween={windowWidth > 500 ? 16 : 8}
