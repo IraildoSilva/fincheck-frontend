@@ -1,11 +1,14 @@
-import { EyeIcon } from '../../../components/icons/EyeIcon'
+import { EyeIcon } from '../../../../components/icons/EyeIcon'
 import { AccountCard } from './AccountCard'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import 'swiper/css'
 import { AccountsSliderNavigation } from './AccountsSliderNavigation'
+import { useAccountsController } from './useAccountsController'
 
 export function Accounts() {
+  const { windowWidth, sliderState, setSliderState } = useAccountsController()
+
   return (
     <div className="rounded-2xl bg-teal-900 h-full w-full px-4 py-8 lg:p-10 flex flex-col">
       <div className="">
@@ -22,12 +25,17 @@ export function Accounts() {
         </div>
       </div>
 
-      <div className="flex-1 flex flex-col justify-end">
+      <div className="flex-1 flex flex-col justify-end mt-10 md:mt-0">
         <div>
           <Swiper
-            spaceBetween={16}
-            slidesPerView={2.2}
-            onSlideChange={(swiper) => console.log(swiper.activeIndex)}
+            spaceBetween={windowWidth > 500 ? 16 : 8}
+            slidesPerView={windowWidth > 500 ? 2.2 : 1.1}
+            onSlideChange={(swiper) => {
+              setSliderState({
+                isBeginning: swiper.isBeginning,
+                isEnd: swiper.isEnd,
+              })
+            }}
           >
             <div
               slot="container-start"
@@ -37,7 +45,10 @@ export function Accounts() {
                 Minhas contas
               </strong>
 
-              <AccountsSliderNavigation />
+              <AccountsSliderNavigation
+                isBeginning={sliderState.isBeginning}
+                isEnd={sliderState.isEnd}
+              />
             </div>
 
             <SwiperSlide>

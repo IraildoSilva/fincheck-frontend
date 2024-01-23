@@ -1,15 +1,23 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons'
 import { useSwiper } from 'swiper/react'
 
-export function AccountsSliderNavigation() {
+interface AccountsSliderNavigationProps {
+  isBeginning: boolean
+  isEnd: boolean
+}
+
+export function AccountsSliderNavigation({
+  isBeginning,
+  isEnd,
+}: AccountsSliderNavigationProps) {
   const swiper = useSwiper()
-  console.log({ swiper })
+
 
   return (
     <div className="">
       <button
         onClick={() => swiper.slidePrev()}
-        disabled={swiper.activeIndex !== 0}
+        disabled={isBeginning}
         className="rounded-full p-3 enabled:hover:bg-black/10 transition ease-in duration-150 disabled:opacity-40"
       >
         <ChevronLeftIcon className="text-white w-6 h-6" />
@@ -17,6 +25,7 @@ export function AccountsSliderNavigation() {
 
       <button
         onClick={() => swiper.slideNext()}
+        disabled={isEnd}
         className="rounded-full p-3 enabled:hover:bg-black/10 transition ease-in duration-150 disabled:opacity-40 "
       >
         <ChevronRightIcon className="text-white w-6 h-6" />
