@@ -12,7 +12,7 @@ interface SignupResponse {
 }
 
 export async function signup(parmas: SignupParams) {
-  await sleep(1500)
+  await sleep(1000)
   const { data } = await httpClient.post<SignupResponse>('/auth/signup', parmas)
 
   return data

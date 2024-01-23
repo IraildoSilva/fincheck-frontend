@@ -6,6 +6,7 @@ import toast from 'react-hot-toast'
 import { authService } from '../../../app/services/authService'
 import { SigninParams } from '../../../app/services/authService/signin'
 import { useAuth } from '../../../app/hooks/useAuth'
+import { useEffect } from 'react'
 
 const schema = z.object({
   email: z
@@ -41,6 +42,20 @@ export function useLoginController() {
       signin(accessToken)
     } catch {
       toast.error('Credenciais inválidas')
+    }
+  })
+
+  useEffect(() => {
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === 'Enter') {
+        handleSubmit()
+      }
+    }
+
+    document.addEventListener('keypress', handleKeyDown)
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
     }
   })
 

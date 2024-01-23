@@ -11,7 +11,7 @@ interface SigninResponse {
 }
 
 export async function signin(params: SigninParams) {
-  await sleep(1500)
+  await sleep(1000)
 
   const { data } = await httpClient.post<SigninResponse>('/auth/signin', params)
 
