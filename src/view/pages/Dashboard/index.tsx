@@ -14,7 +14,7 @@ export function Dashboard() {
         </header>
 
         <main className="flex-1 flex flex-col lg:flex-row gap-4 max-h-full">
-          <div className="w-full h-full lg:w-1/2">
+          <div className="w-full h-full min-h-[440px] lg:w-1/2">
             {/* className="w-full h-full lg:w-1/2" */}
 
             <Accounts />
