@@ -13,8 +13,14 @@ import { Spinner } from '../../../../components/Spinner'
 import emptyState from '../../../../../assets/empty-state.svg'
 
 export function Transactions() {
-  const { areValuesVisible, isInitialLoading, transactions, isLoading } =
-    useTransactionsController()
+  const {
+    slideState,
+    setSlideState,
+    areValuesVisible,
+    isInitialLoading,
+    transactions,
+    isLoading,
+  } = useTransactionsController()
 
   const hasTransactions = transactions.length > 0
 
@@ -46,8 +52,21 @@ export function Transactions() {
             </div>
 
             <div className="mt-6 relative">
-              <Swiper slidesPerView={3} spaceBetween={16} centeredSlides>
-                <SliderNavigation />
+              <Swiper
+                slidesPerView={3}
+                spaceBetween={16}
+                centeredSlides
+                onSlideChange={({ isBeginning, isEnd }) => {
+                  setSlideState({
+                    isBeginning,
+                    isEnd,
+                  })
+                }}
+              >
+                <SliderNavigation
+                  isBeginning={slideState.isBeginning}
+                  isEnd={slideState.isEnd}
+                />
 
                 {MONTHS.map((month, index) => (
                   <SwiperSlide key={month}>
