@@ -7,8 +7,12 @@ import { SliderOption } from './SliderOption'
 import { SliderNavigation } from './SliderNavigation'
 import { formatCurrency } from '../../../../../app/utils/formatCurrency'
 import { CategoryIcon } from '../../../../components/icons/categories/CategoryIcon'
+import { useTransactionsController } from './useTransactionsController'
+import { cn } from '../../../../../app/utils/cn'
 
 export function Transactions() {
+  const { areValuesVisible } = useTransactionsController()
+
   return (
     <div className="rounded-2xl bg-gray-100 h-full w-full px-4 py-8 lg:p-10 flex flex-col">
       <header>
@@ -60,7 +64,12 @@ export function Transactions() {
             </div>
           </div>
 
-          <span className="text-red-800 font-medium tracking-[-0.5px]">
+          <span
+            className={cn(
+              'text-red-800 font-medium tracking-[-0.5px]',
+              !areValuesVisible && 'blur-sm'
+            )}
+          >
             -{formatCurrency(123)}
           </span>
         </div>
@@ -77,7 +86,12 @@ export function Transactions() {
             </div>
           </div>
 
-          <span className="text-green-800 font-medium tracking-[-0.5px]">
+          <span
+            className={cn(
+              'text-green-800 font-medium tracking-[-0.5px]',
+              !areValuesVisible && 'blur-sm'
+            )}
+          >
             -{formatCurrency(2500)}
           </span>
         </div>
@@ -94,7 +108,12 @@ export function Transactions() {
             </div>
           </div>
 
-          <span className="text-green-800 font-medium tracking-[-0.5px]">
+          <span
+            className={cn(
+              'text-green-800 font-medium tracking-[-0.5px]',
+              !areValuesVisible && 'blur-sm'
+            )}
+          >
             -{formatCurrency(2500)}
           </span>
         </div>
@@ -111,7 +130,12 @@ export function Transactions() {
             </div>
           </div>
 
-          <span className="text-green-800 font-medium tracking-[-0.5px]">
+          <span
+            className={cn(
+              'text-green-800 font-medium tracking-[-0.5px]',
+              !areValuesVisible && 'blur-sm'
+            )}
+          >
             -{formatCurrency(2500)}
           </span>
         </div>
@@ -128,7 +152,12 @@ export function Transactions() {
             </div>
           </div>
 
-          <span className="text-green-800 font-medium tracking-[-0.5px]">
+          <span
+            className={cn(
+              'text-green-800 font-medium tracking-[-0.5px]',
+              !areValuesVisible && 'blur-sm'
+            )}
+          >
             -{formatCurrency(2500)}
           </span>
         </div>
@@ -145,7 +174,12 @@ export function Transactions() {
             </div>
           </div>
 
-          <span className="text-green-800 font-medium tracking-[-0.5px]">
+          <span
+            className={cn(
+              'text-green-800 font-medium tracking-[-0.5px]',
+              !areValuesVisible && 'blur-sm'
+            )}
+          >
             -{formatCurrency(2500)}
           </span>
         </div>

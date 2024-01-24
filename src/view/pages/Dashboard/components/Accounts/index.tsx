@@ -5,9 +5,17 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import { SliderNavigation } from './SliderNavigation'
 import { useAccountsController } from './useAccountsController'
+import { formatCurrency } from '../../../../../app/utils/formatCurrency'
+import { cn } from '../../../../../app/utils/cn'
 
 export function Accounts() {
-  const { windowWidth, sliderState, setSliderState } = useAccountsController()
+  const {
+    windowWidth,
+    sliderState,
+    setSliderState,
+    areValuesVisible,
+    toggleValuesVisibility,
+  } = useAccountsController()
 
   return (
     <div className="rounded-2xl bg-teal-900 h-full w-full px-4 py-8 lg:p-10 flex flex-col">
@@ -15,12 +23,20 @@ export function Accounts() {
         <span className="tracking-[-0.5px] text-white block">Saldo total</span>
 
         <div className="flex items-center gap-2">
-          <strong className="text-[32px] tracking-[-1px] text-white">
-            R$ 1000,00
+          <strong
+            className={cn(
+              'text-[32px] tracking-[-1px] text-white',
+              !areValuesVisible && 'blur-md'
+            )}
+          >
+            {formatCurrency(1000)}
           </strong>
 
-          <button className="w-8 h-8 flex items-center justify-center">
-            <EyeIcon open />
+          <button
+            onClick={toggleValuesVisibility}
+            className="w-8 h-8 flex items-center justify-center"
+          >
+            <EyeIcon open={areValuesVisible} />
           </button>
         </div>
       </div>
