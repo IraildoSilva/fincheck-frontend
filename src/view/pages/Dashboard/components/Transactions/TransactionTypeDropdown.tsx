@@ -12,7 +12,7 @@ export function TransactionTypeDropdown() {
 
   return (
     <DropdownMenu.Root>
-      <DropdownMenu.Trigger>
+      <DropdownMenu.Trigger asChild>
         <button className="flex items-center gap-2 ">
           {selectedFilter === 'transaction' && (
             <>
@@ -48,7 +48,7 @@ export function TransactionTypeDropdown() {
         </button>
       </DropdownMenu.Trigger>
 
-      <DropdownMenu.Content className="w-[279px] z-20">
+      <DropdownMenu.Content className="w-[279px]">
         <DropdownMenu.Item
           onSelect={() => setSelectedFilter('income')}
           className="gap-2"

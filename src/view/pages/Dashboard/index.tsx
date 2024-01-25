@@ -3,6 +3,7 @@ import { Logo } from '../../components/Logo'
 import { Accounts } from './components/Accounts'
 import { Transactions } from './components/Transactions'
 import { DashboardProvider } from './components/DashboardContext'
+import { Fab } from './components/Fab'
 
 export function Dashboard() {
   return (
@@ -13,16 +14,16 @@ export function Dashboard() {
           <UserMenu />
         </header>
 
-        <main className="flex-1 flex flex-col lg:flex-row gap-4 max-h-full">
+        <main className="flex-1 flex flex-col lg:flex-row gap-4 max-h-full lg:pr-4">
           <div className="w-full h-full lg:w-1/2">
-            {/* className="w-full h-full lg:w-1/2" */}
-
             <Accounts />
           </div>
           <div className="w-full h-full lg:w-1/2">
             <Transactions />
           </div>
         </main>
+
+        <Fab />
       </div>
     </DashboardProvider>
   )

@@ -6,9 +6,14 @@ function DropdownMenuRoot({ children }: { children: React.ReactNode }) {
   return <RdxDropdownMenu.Root>{children}</RdxDropdownMenu.Root>
 }
 
-function DropdownMenuTrigger({ children }: { children: React.ReactNode }) {
+interface DropdownTriggerProps {
+  children: React.ReactNode
+  asChild?: boolean
+}
+
+function DropdownMenuTrigger({ children, asChild }: DropdownTriggerProps) {
   return (
-    <RdxDropdownMenu.Trigger className="outline-none">
+    <RdxDropdownMenu.Trigger asChild={asChild} className="outline-none">
       {children}
     </RdxDropdownMenu.Trigger>
   )
@@ -17,17 +22,22 @@ function DropdownMenuTrigger({ children }: { children: React.ReactNode }) {
 interface DropdownMenuContentProps {
   children: React.ReactNode
   className?: string
+  side?: 'top' | 'right' | 'bottom' | 'left' | undefined
 }
 
 function DropdownMenuContent({
   children,
   className,
+  side,
 }: DropdownMenuContentProps) {
   return (
     <RdxDropdownMenu.Portal>
       <RdxDropdownMenu.Content
+        side={side}
         className={cn(
-          'rounded-2xl p-2 bg-white space-y-2 shadow-[0px_11px_20px_0px_rgba(0,0,0,0.10)] data-[side=bottom]:animate-slide-up-and-fade',
+          'rounded-2xl p-2 bg-white space-y-2 shadow-[0px_11px_20px_0px_rgba(0,0,0,0.10)] z-50',
+          'data-[side=top]:animate-slide-down-and-fade',
+          'data-[side=bottom]:animate-slide-up-and-fade',
           className
         )}
       >
