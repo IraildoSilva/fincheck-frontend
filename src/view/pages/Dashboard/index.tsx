@@ -4,7 +4,6 @@ import { Accounts } from './components/Accounts'
 import { Transactions } from './components/Transactions'
 import { DashboardProvider } from './components/DashboardContext'
 import { Fab } from './components/Fab'
-import { Modal } from '../../components/Modal'
 
 export function Dashboard() {
   return (
@@ -25,10 +24,6 @@ export function Dashboard() {
         </main>
 
         <Fab />
-
-        <Modal title="Receitas" open rightAction={'Trash'}>
-          Content
-        </Modal>
       </div>
     </DashboardProvider>
   )
