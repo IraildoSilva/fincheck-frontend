@@ -1,10 +1,11 @@
-import { UserMenu } from "../../components/UserMenu";
-import { Logo } from "../../components/Logo";
-import { Accounts } from "./components/Accounts";
-import { Transactions } from "./components/Transactions";
-import { DashboardProvider } from "./components/DashboardContext";
-import { Fab } from "./components/Fab";
-import { NewAccountModal } from "./modals/NewAccountModal";
+import { UserMenu } from '../../components/UserMenu'
+import { Logo } from '../../components/Logo'
+import { Accounts } from './components/Accounts'
+import { Transactions } from './components/Transactions'
+import { DashboardProvider } from './components/DashboardContext'
+import { Fab } from './components/Fab'
+import { NewAccountModal } from './modals/NewAccountModal'
+import { NewTransactionModal } from './modals/NewTransactionModal'
 
 export function Dashboard() {
 	return (
@@ -26,7 +27,8 @@ export function Dashboard() {
 
 				<Fab />
 				<NewAccountModal />
+				<NewTransactionModal />
 			</div>
 		</DashboardProvider>
-	);
+	)
 }

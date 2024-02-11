@@ -7,26 +7,26 @@ import { AuthProvider } from './app/contexts/AuthContext'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
-      retry: false,
-    },
-  },
+	defaultOptions: {
+		queries: {
+			refetchOnWindowFocus: false,
+			retry: false,
+		},
+	},
 })
 
 export function App() {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <Router />
+	return (
+		<QueryClientProvider client={queryClient}>
+			<AuthProvider>
+				<Router />
 
-        <Toaster />
-      </AuthProvider>
+				<Toaster />
+			</AuthProvider>
 
-      <ReactQueryDevtools position="top" buttonPosition="bottom-left" />
-    </QueryClientProvider>
-  )
+			<ReactQueryDevtools position="top" buttonPosition="bottom-left" />
+		</QueryClientProvider>
+	)
 }
 
 // export function App() {
