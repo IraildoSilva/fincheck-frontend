@@ -17,7 +17,6 @@ export function ConfirmDeleteModal({
 	description,
 	isLoading,
 }: ConfirmDeleteModalProps) {
-	console.log(isLoading)
 	return (
 		<Modal open title="Excluir" onClose={onClose}>
 			<div className="flex flex-col items-center text-center gap-6">
