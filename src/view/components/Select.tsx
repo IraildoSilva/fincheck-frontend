@@ -6,6 +6,7 @@ import {
 } from '@radix-ui/react-icons'
 import { cn } from '../../app/utils/cn'
 import { useState } from 'react'
+import { Spinner } from './Spinner'
 
 interface SelectProps {
 	className?: string
@@ -17,6 +18,8 @@ interface SelectProps {
 	}>
 	onChange?: (value: string) => void
 	value?: string
+	isLoading?: boolean
+	disabled?: boolean
 }
 
 export function Select({
@@ -26,6 +29,8 @@ export function Select({
 	options,
 	onChange,
 	value,
+	isLoading,
+	disabled,
 }: SelectProps) {
 	const [selectedValue, setSelectedValue] = useState(value ?? '')
 
@@ -39,7 +44,7 @@ export function Select({
 			<div className="relative">
 				<label
 					className={cn(
-						'absolute left-3 top-1/2 -translate-y-1/2 z-10 text-gray-700 pointer-events-none',
+						'absolute left-3 top-1/2 -translate-y-1/2 z-10 text-gray-700 pointer-events-none peer-disabled:text-red-600',
 						selectedValue && 'top-2 translate-y-0 text-xs'
 					)}
 				>
@@ -47,8 +52,9 @@ export function Select({
 				</label>
 				<RdxSelect.Root value={value} onValueChange={handleSelect}>
 					<RdxSelect.Trigger
+						disabled={disabled}
 						className={cn(
-							'bg-white w-full rounded-lg border border-gray-500 px-3 h-[52px] text-gray-800 focus:border-gray-800 outline-none transition-all text-left relative pt-4',
+							'bg-white w-full rounded-lg border border-gray-500 px-3 h-[52px] text-gray-800 focus:border-gray-800 outline-none transition-all text-left relative pt-4 disabled:border-gray-300 disabled:cursor-not-allowed ',
 							error && '!border-red-900',
 							className
 						)}
@@ -56,7 +62,11 @@ export function Select({
 						<RdxSelect.Value />
 
 						<RdxSelect.Icon className="absolute top-1/2 -translate-y-1/2 right-3">
-							<ChevronDownIcon className="w-6 h-6 text-gray-800" />
+							{!isLoading && (
+								<ChevronDownIcon className="w-6 h-6 text-gray-800" />
+							)}
+
+							{isLoading && <Spinner className="w-6 h-6" />}
 						</RdxSelect.Icon>
 					</RdxSelect.Trigger>
 					<RdxSelect.Portal>
