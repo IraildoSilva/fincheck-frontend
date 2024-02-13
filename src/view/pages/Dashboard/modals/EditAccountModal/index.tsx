@@ -5,24 +5,29 @@ import { Input } from '../../../../components/Input'
 import { InputCurrency } from '../../../../components/InputCurrency'
 import { Modal } from '../../../../components/Modal'
 import { Select } from '../../../../components/Select'
-import { useNewAccountModalController } from './useNewAccountModalController'
+import { useEditAccountModalController } from './EditAccountModalController'
 
-export function NewAccountModal() {
+export function EditAccountModal() {
 	const {
-		isNewAccountModalOpen,
-		closeNewAccountModal,
+		isEditAccountModalOpen,
+		closeEditAccountModal,
 		register,
 		errors,
 		handleSubmit,
 		control,
 		isLoading,
-	} = useNewAccountModalController()
+		accountBeingEdited,
+	} = useEditAccountModalController()
+
+	if (!accountBeingEdited) {
+		return null
+	}
 
 	return (
 		<Modal
-			title="Nova Conta"
-			open={isNewAccountModalOpen}
-			onClose={closeNewAccountModal}
+			title="Editar Conta"
+			open={isEditAccountModalOpen}
+			onClose={closeEditAccountModal}
 		>
 			<form onSubmit={handleSubmit}>
 				<div>
@@ -35,6 +40,7 @@ export function NewAccountModal() {
 						<Controller
 							control={control}
 							name="initialBalance"
+							defaultValue={0}
 							render={({ field: { onChange, value } }) => (
 								<InputCurrency
 									onChange={onChange}
@@ -95,7 +101,7 @@ export function NewAccountModal() {
 				</div>
 
 				<Button isLoading={isLoading} className="w-full mt-6">
-					Criar
+					Salvar
 				</Button>
 			</form>
 		</Modal>
