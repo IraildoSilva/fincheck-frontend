@@ -30,7 +30,6 @@ export function useEditAccountModalController() {
 		handleSubmit: hookFormSubmit,
 		formState: { errors },
 		control,
-		reset,
 	} = useForm<FormData>({
 		resolver: zodResolver(schema),
 		defaultValues: {
@@ -43,21 +42,21 @@ export function useEditAccountModalController() {
 
 	const queryClient = useQueryClient()
 
-	const { isLoading, mutateAsync } = useMutation(bankAccountsService.create)
+	const { isLoading, mutateAsync } = useMutation(bankAccountsService.update)
 
 	const handleSubmit = hookFormSubmit(async (data) => {
 		try {
 			await mutateAsync({
 				...data,
 				initialBalance: currencyStringToNumber(data.initialBalance),
+				id: accountBeingEdited!.id,
 			})
 
 			queryClient.invalidateQueries({ queryKey: ['bankAccounts'] })
-			toast.success('Conta cadastrada com sucesso!')
+			toast.success('A Conta foi editada com sucesso!')
 			closeEditAccountModal()
-			reset()
 		} catch {
-			toast.error('Erro ao cadastrar a conta!')
+			toast.error('Erro ao salvar as alterações!')
 		}
 	})
 
