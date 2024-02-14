@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react'
 import { useDashboard } from '../DashboardContext/useDashboard'
+import { useTransactions } from '../../../../../app/hooks/useTransactions'
 
 export function useTransactionsController() {
 	const { areValuesVisible } = useDashboard()
@@ -8,6 +9,8 @@ export function useTransactionsController() {
 		isEnd: false,
 	})
 	const [isFiltersModalOpen, setIsFiltersModalOpen] = useState(false)
+
+	const { transactions, isFetching, isInitialLoading } = useTransactions()
 
 	const handleOpenFiltersModal = useCallback(() => {
 		setIsFiltersModalOpen(true)
@@ -21,11 +24,11 @@ export function useTransactionsController() {
 		slideState,
 		setSlideState,
 		areValuesVisible,
-		isInitialLoading: false,
-		transactions: [''],
-		isLoading: false,
+		isInitialLoading,
+		isLoading: isFetching,
 		isFiltersModalOpen,
 		handleOpenFiltersModal,
 		handleCloseFiltersModal,
+		transactions,
 	}
 }
