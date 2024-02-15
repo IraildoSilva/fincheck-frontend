@@ -3,76 +3,61 @@ import { TransactionsIcon } from '../../../../components/icons/TransactionsIcon'
 import { DropdownMenu } from '../../../../components/DropdownMenu'
 import { IncomeIcon } from '../../../../components/icons/IncomeIcon'
 import { ExpensesIcon } from '../../../../components/icons/ExpensesIcon'
-import { useState } from 'react'
 
-export function TransactionTypeDropdown() {
-  const [selectedFilter, setSelectedFilter] = useState<
-    'income' | 'expense' | 'transaction'
-  >('transaction')
+type TransactionType = 'INCOME' | 'EXPENSE' | undefined
 
-  return (
-    <DropdownMenu.Root>
-      <DropdownMenu.Trigger asChild>
-        <button className="flex items-center gap-2 ">
-          {selectedFilter === 'transaction' && (
-            <>
-              <TransactionsIcon />
+interface TransactionTypeDropdownProps {
+	onSelect: (type: TransactionType) => void
+	selectedType: TransactionType
+}
 
-              <span className="text-sm text-gray-800 tracking-[-0.5px] font-medium">
-                Transações
-              </span>
-            </>
-          )}
+export function TransactionTypeDropdown({
+	onSelect,
+	selectedType,
+}: TransactionTypeDropdownProps) {
+	return (
+		<DropdownMenu.Root>
+			<DropdownMenu.Trigger asChild>
+				<button className="flex items-center gap-2 ">
+					{selectedType === 'INCOME' && <IncomeIcon />}
+					{selectedType === 'EXPENSE' && <ExpensesIcon />}
+					{selectedType === undefined && <TransactionsIcon />}
 
-          {selectedFilter === 'income' && (
-            <>
-              <IncomeIcon />
+					<span className="text-sm text-gray-800 tracking-[-0.5px] font-medium">
+						{selectedType === 'INCOME' && 'Receitas'}
+						{selectedType === 'EXPENSE' && 'Despesas'}
+						{selectedType === undefined && 'Transações'}
+					</span>
 
-              <span className="text-sm text-gray-800 tracking-[-0.5px] font-medium">
-                Receitas
-              </span>
-            </>
-          )}
+					<ChevronDownIcon className="text-gray-900" />
+				</button>
+			</DropdownMenu.Trigger>
 
-          {selectedFilter === 'expense' && (
-            <>
-              <ExpensesIcon />
+			<DropdownMenu.Content className="w-[279px]">
+				<DropdownMenu.Item
+					onSelect={() => onSelect('INCOME')}
+					className="gap-2"
+				>
+					<IncomeIcon />
+					Receitas
+				</DropdownMenu.Item>
 
-              <span className="text-sm text-gray-800 tracking-[-0.5px] font-medium">
-                Despesas
-              </span>
-            </>
-          )}
+				<DropdownMenu.Item
+					onSelect={() => onSelect('EXPENSE')}
+					className="gap-2"
+				>
+					<ExpensesIcon />
+					Despesas
+				</DropdownMenu.Item>
 
-          <ChevronDownIcon className="text-gray-900" />
-        </button>
-      </DropdownMenu.Trigger>
-
-      <DropdownMenu.Content className="w-[279px]">
-        <DropdownMenu.Item
-          onSelect={() => setSelectedFilter('income')}
-          className="gap-2"
-        >
-          <IncomeIcon />
-          Receitas
-        </DropdownMenu.Item>
-
-        <DropdownMenu.Item
-          onSelect={() => setSelectedFilter('expense')}
-          className="gap-2"
-        >
-          <ExpensesIcon />
-          Despesas
-        </DropdownMenu.Item>
-
-        <DropdownMenu.Item
-          onSelect={() => setSelectedFilter('transaction')}
-          className="gap-2"
-        >
-          <TransactionsIcon />
-          Transações
-        </DropdownMenu.Item>
-      </DropdownMenu.Content>
-    </DropdownMenu.Root>
-  )
+				<DropdownMenu.Item
+					onSelect={() => onSelect(undefined)}
+					className="gap-2"
+				>
+					<TransactionsIcon />
+					Transações
+				</DropdownMenu.Item>
+			</DropdownMenu.Content>
+		</DropdownMenu.Root>
+	)
 }
