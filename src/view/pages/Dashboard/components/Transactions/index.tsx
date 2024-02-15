@@ -61,6 +61,8 @@ export function Transactions() {
 								centeredSlides
 								initialSlide={filters.month}
 								onSlideChange={({ isBeginning, isEnd, realIndex }) => {
+									if (realIndex === filters.month) return
+
 									setSlideState({
 										isBeginning,
 										isEnd,
