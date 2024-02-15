@@ -5,7 +5,7 @@ import { Input } from '../../../../components/Input'
 import { InputCurrency } from '../../../../components/InputCurrency'
 import { Modal } from '../../../../components/Modal'
 import { Select } from '../../../../components/Select'
-import { useEditAccountModalController } from './EditAccountModalController'
+import { useEditAccountModalController } from './useEditAccountModalController'
 import { TrashIcon } from '../../../../components/icons/TrashIcon'
 import { ConfirmDeleteModal } from '../../../../components/ConfirmDeleteModal'
 
