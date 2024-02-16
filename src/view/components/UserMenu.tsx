@@ -3,14 +3,16 @@ import { DropdownMenu } from './DropdownMenu'
 import { useAuth } from '../../app/hooks/useAuth'
 
 export function UserMenu() {
-  const { signout } = useAuth()
+  const { signout, user } = useAuth()
+
+  const userInitials = user?.name.slice(0, 2).toUpperCase()
 
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger>
         <div className="w-12 h-12 bg-teal-50 rounded-full p-5 flex items-center justify-center border border-teal-100">
           <span className="text-teal-900 text-sm font-medium tracking-[-0.5px]">
-            IR
+            {userInitials}
           </span>
         </div>
       </DropdownMenu.Trigger>
