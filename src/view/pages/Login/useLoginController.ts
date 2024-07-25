@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import toast from 'react-hot-toast'
 import { authService } from '../../../app/services/authService'
 import { SigninParams } from '../../../app/services/authService/signin'
@@ -35,10 +35,13 @@ export function useLoginController() {
 
   const { signin } = useAuth()
 
+  const queryClient = useQueryClient()
+
   const handleSubmit = hookFormHandleSubmit(async (data) => {
     try {
       const { accessToken } = await mutateAsync(data)
 
+      queryClient.invalidateQueries({ queryKey: ['bankAccounts'] })
       signin(accessToken)
     } catch {
       toast.error('Credenciais inválidas')
