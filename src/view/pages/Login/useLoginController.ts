@@ -60,7 +60,7 @@ export function useLoginController() {
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
     }
-  })
+  }, [handleSubmit])
 
   return {
     handleSubmit,
