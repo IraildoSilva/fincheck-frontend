@@ -22,7 +22,7 @@ export function Dashboard() {
 							<UserMenu />
 						</header>
 
-						<main className="flex-1 flex flex-col lg:flex-row gap-4 max-h-full lg:pr-4">
+						<main className="flex-1 flex flex-col lg:flex-row gap-4 lg:pr-4 max-h-[calc(100%-64px)]">
 							<div className="w-full h-full lg:w-1/2">
 								<Accounts />
 							</div>
