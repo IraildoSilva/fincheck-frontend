@@ -141,12 +141,17 @@ export function Transactions() {
                       />
 
                       <div>
-                        <strong className="block font-bold tracking-[-0.5px]">
-                          {transaction.category?.name}
+                        <strong className="block font-bold tracking-[-0.5px] leading-none">
+                          {transaction.name}
                         </strong>
-                        <span className="text-sm text-gray-600">
-                          {formatDate(new Date(transaction.date))}
-                        </span>
+                        <div className="flex flex-col text-gray-600">
+                          <span className="text-sm leading-1">
+                            {transaction.category?.name}
+                          </span>
+                          <span className="text-xs leading-none">
+                            {formatDate(new Date(transaction.date))}
+                          </span>
+                        </div>
                       </div>
                     </div>
 
