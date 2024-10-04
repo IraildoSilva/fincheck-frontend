@@ -23,6 +23,13 @@ export function useTransactionsController() {
   const { transactions, isFetching, isInitialLoading, refetchTransactions } =
     useTransactions(filters)
 
+  const sortedTransactions = transactions.sort((a, b) => {
+    const aSide = new Date(a.date).getTime()
+    const bSide = new Date(b.date).getTime()
+
+    return aSide - bSide
+  })
+  
   useEffect(() => {
     refetchTransactions()
   }, [filters, refetchTransactions])
@@ -78,7 +85,7 @@ export function useTransactionsController() {
     isFiltersModalOpen,
     handleOpenFiltersModal,
     handleCloseFiltersModal,
-    transactions,
+    transactions: sortedTransactions,
     filters,
     handleChangeFilters,
     handleApplyFilters,
