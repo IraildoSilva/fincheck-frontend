@@ -73,7 +73,10 @@ export function Transactions() {
               />
 
               <div className="flex gap-6">
-                <SummaryButton onClick={handleOpenSummaryModal} />
+                <SummaryButton
+                  onClick={handleOpenSummaryModal}
+                  disabled={!hasTransactions}
+                />
 
                 <button onClick={handleOpenFiltersModal}>
                   <FilterIcon />
