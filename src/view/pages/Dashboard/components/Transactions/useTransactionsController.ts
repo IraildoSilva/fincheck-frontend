@@ -11,6 +11,7 @@ export function useTransactionsController() {
     isEnd: false,
   })
   const [isFiltersModalOpen, setIsFiltersModalOpen] = useState(false)
+  const [isSummaryModalOpen, setIsSummaryModalOpen] = useState(false)
   const [isEditModalOpen, setIsEditModalOpen] = useState(false)
   const [transactionBeingEdited, setTransactionBeingEdited] =
     useState<null | Transaction>(null)
@@ -29,7 +30,7 @@ export function useTransactionsController() {
 
     return aSide - bSide
   })
-  
+
   useEffect(() => {
     refetchTransactions()
   }, [filters, refetchTransactions])
@@ -76,6 +77,14 @@ export function useTransactionsController() {
     setTransactionBeingEdited(null)
   }
 
+  const handleOpenSummaryModal = useCallback(() => {
+    setIsSummaryModalOpen(true)
+  }, [])
+
+  const handleCloseSummaryModal = useCallback(() => {
+    setIsSummaryModalOpen(false)
+  }, [])
+
   return {
     slideState,
     setSlideState,
@@ -93,5 +102,8 @@ export function useTransactionsController() {
     transactionBeingEdited,
     handleOpenEditModal,
     handleCloseEditModal,
+    handleOpenSummaryModal,
+    handleCloseSummaryModal,
+    isSummaryModalOpen,
   }
 }

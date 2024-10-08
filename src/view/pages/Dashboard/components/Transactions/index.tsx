@@ -13,6 +13,8 @@ import { TransactionTypeDropdown } from './TransactionTypeDropdown'
 import { FiltersModal } from './FiltersModal'
 import { formatDate } from '../../../../../app/utils/formatDate'
 import { EditTransactionModal } from '../../modals/EditTransactionModal'
+import { SummaryModal } from './SummaryModal'
+import { SummaryButton } from './SummaryButton'
 
 export function Transactions() {
   const {
@@ -32,6 +34,9 @@ export function Transactions() {
     handleCloseEditModal,
     isEditModalOpen,
     transactionBeingEdited,
+    handleOpenSummaryModal,
+    handleCloseSummaryModal,
+    isSummaryModalOpen,
   } = useTransactionsController()
 
   const hasTransactions = transactions.length > 0
@@ -52,6 +57,14 @@ export function Transactions() {
             onClose={handleCloseFiltersModal}
           />
 
+          {hasTransactions && (
+            <SummaryModal
+              open={isSummaryModalOpen}
+              onClose={handleCloseSummaryModal}
+              transactions={transactions}
+            />
+          )}
+
           <header>
             <div className="flex justify-between items-center">
               <TransactionTypeDropdown
@@ -59,9 +72,13 @@ export function Transactions() {
                 selectedType={filters.type}
               />
 
-              <button onClick={handleOpenFiltersModal}>
-                <FilterIcon />
-              </button>
+              <div className="flex gap-6">
+                <SummaryButton onClick={handleOpenSummaryModal} />
+
+                <button onClick={handleOpenFiltersModal}>
+                  <FilterIcon />
+                </button>
+              </div>
             </div>
 
             <div className="mt-6 relative">
