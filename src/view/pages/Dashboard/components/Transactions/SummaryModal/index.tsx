@@ -48,7 +48,7 @@ export function SummaryModal({
           <span className="text-gray-800">Saldo</span>
           <span
             className={cn(
-              'tracking-[-0.5px] text-green-800',
+              'tracking-[-0.5px] text-green-800 font-medium',
               isNegativeBalance && 'text-red-800'
             )}
           >
