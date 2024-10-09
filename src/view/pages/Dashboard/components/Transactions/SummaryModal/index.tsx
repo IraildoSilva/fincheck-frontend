@@ -52,7 +52,7 @@ export function SummaryModal({
               isNegativeBalance && 'text-red-800'
             )}
           >
-            {isNegativeBalance ? '- ' : '+ '}
+            {isNegativeBalance ? '' : '+ '}
             {formatCurrency(balance)}
           </span>
         </div>
