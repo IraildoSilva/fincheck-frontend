@@ -177,7 +177,7 @@ export function Transactions() {
 
                     <span
                       className={cn(
-                        'text-red-800 font-medium tracking-[-0.5px]',
+                        'text-red-800 font-medium tracking-[-0.5px] text-nowrap',
                         !areValuesVisible && 'blur-sm',
                         transaction.type === 'INCOME' && 'text-green-800'
                       )}
