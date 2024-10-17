@@ -28,7 +28,7 @@ export function useTransactionsController() {
     const aSide = new Date(a.date).getTime()
     const bSide = new Date(b.date).getTime()
 
-    return aSide - bSide
+    return bSide - aSide
   })
 
   useEffect(() => {
